@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:cvt/Aftersplash.dart';
+import 'package:cvt/StartingScreen.dart';
 import 'package:quiver/async.dart';
 
 void main() => runApp(MaterialApp(home: SplashScreen()));
