@@ -1,42 +1,30 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'globalAllScreen.dart';
-import 'countryScreen.dart';
-import 'aboutScreen.dart';
+import 'package:cvt/Aftersplash.dart';
+import 'package:quiver/async.dart';
 
-void main() => runApp(CoronaVirusTracker());
+void main() => runApp(MaterialApp(home: SplashScreen()));
 
-class CoronaVirusTracker extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _CoronaVirusTrackerState createState() => _CoronaVirusTrackerState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _CoronaVirusTrackerState extends State<CoronaVirusTracker> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home: CoronaDrawer());
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTime();
   }
-}
+  startTime() async {
+    var _duration = new Duration(seconds: 3);
+    return new Timer(_duration, navigationPage);
+  }
 
-class CoronaDrawer extends StatefulWidget {
-  @override
-  _CoronaDrawerState createState() => _CoronaDrawerState();
-}
-
-class _CoronaDrawerState extends State<CoronaDrawer> {
-  int _selectedIndex = 0;
-
-  List<Widget> _widgetOptions = <Widget>[
-    globalAll(),
-    Country(),
-    About(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  void navigationPage() {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (BuildContext context) => CoronaVirusTracker()));
   }
 
   @override
@@ -44,28 +32,13 @@ class _CoronaDrawerState extends State<CoronaDrawer> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesome.globe),
-            title: Text('Global'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesome.flag),
-            title: Text('Countries'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesome.address_card),
-            title: Text('About'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+             Image.asset('images/SoftElit.png'),
+            Text('CoronaVirusTracker',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+          ],
+        ),
       ),
     );
   }
